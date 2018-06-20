@@ -1,0 +1,37 @@
+'''
+Problem Statement 1:
+Two balls are drawn at random in succession without replacement from an urn
+containing 4 red balls and 6 black balls.
+Find the probabilities of all the possible outcomes.
+'''
+
+
+import math
+
+# an urn containing 4 red balls and 6 black balls
+
+
+#All possibilities
+possibilities = ['RR','RB','BB','BR']
+
+def calcProb(combination):
+    Rcount = 4
+    Bcount = 6
+    if (combination[0] == 'R'):
+        prob_firstDraw = Rcount/(Rcount+Bcount)
+        Rcount-=1
+    if (combination[0] == 'B'):
+        prob_firstDraw = Bcount/(Rcount+Bcount)
+        Bcount-=1
+    if (combination[1] == 'R'):
+        prob_secDraw = Rcount/(Rcount+Bcount)
+        Rcount-=1
+    if (combination[1] == 'B'):
+        prob_secDraw = Bcount/(Rcount+Bcount)
+        Bcount-=1
+    return (prob_firstDraw * prob_secDraw)
+    
+
+out = ((combination, calcProb(combination)) for combination in possibilities)
+print("Probabilities of all possible outcomes :")
+print(dict(out))
